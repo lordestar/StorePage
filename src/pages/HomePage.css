@@ -1,0 +1,100 @@
+﻿.home-hero {
+  background: linear-gradient(180deg, var(--color-accent-light) 0%, var(--color-bg) 100%);
+  margin-top: calc(-1 * var(--space-6));
+  padding: var(--space-6) 0 var(--space-8);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  margin-bottom: var(--space-8);
+}
+
+.home-hero .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.home-search-area {
+  text-align: center;
+  padding-top: var(--space-4);
+}
+
+.home-title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.home-subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  margin: var(--space-2) 0 var(--space-6);
+}
+
+.home-searchbar {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.home-section {
+  margin-bottom: var(--space-10);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.section-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.section-header-left svg { color: var(--color-accent); }
+.section-header-left h2 { font-size: var(--text-xl); }
+
+.section-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.section-header-right:hover { text-decoration: underline; }
+
+.home-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-3);
+}
+
+.home-cat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.home-cat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.home-cat-icon { font-size: 1.75rem; }
+.home-cat-name { font-size: var(--text-sm); color: var(--color-text-secondary); }
+
+@media (max-width: 640px) {
+  .home-title { font-size: var(--text-2xl); }
+  .home-categories { grid-template-columns: repeat(3, 1fr); }
+  .home-hero { margin-top: 0; padding: var(--space-4) 0 var(--space-6); border-radius: 0; }
+}

@@ -1,0 +1,51 @@
+﻿.admin-login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--color-bg); }
+.admin-login-card { width: 100%; max-width: 380px; background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-8); margin: var(--space-4); }
+.admin-login-header { text-align: center; margin-bottom: var(--space-6); }
+.admin-login-header svg { color: var(--color-info); margin-bottom: var(--space-2); }
+.admin-login-header h1 { font-size: var(--text-xl); font-weight: 700; }
+.admin-login-header p { color: var(--color-text-muted); font-size: var(--text-sm); }
+.admin-login-error { padding: var(--space-2) var(--space-3); background: #fef2f2; color: var(--color-danger); border-radius: var(--radius-sm); font-size: var(--text-sm); margin-bottom: var(--space-3); }
+.admin-field { margin-bottom: var(--space-3); }
+.admin-field label { display: block; font-size: var(--text-sm); font-weight: 500; color: var(--color-text-secondary); margin-bottom: var(--space-1); }
+.admin-field input { width: 100%; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: var(--text-sm); outline: none; }
+.admin-field input:focus { border-color: var(--color-info); }
+.admin-pwd-wrapper { position: relative; }
+.admin-pwd-wrapper input { padding-right: 40px; }
+.admin-pwd-wrapper button { position: absolute; right: var(--space-2); top: 50%; transform: translateY(-50%); color: var(--color-text-muted); }
+.admin-login-btn { width: 100%; padding: var(--space-3); background: var(--color-info); color: white; font-weight: 600; border-radius: var(--radius-md); margin-top: var(--space-2); }
+.admin-login-btn:hover { opacity: 0.9; }
+.admin-login-hint { text-align: center; font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-4); }
+
+.admin-layout { display: flex; min-height: 100vh; }
+.admin-sidebar { width: var(--sidebar-width); background: #1a1d23; color: #e0e0e0; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; transition: transform 0.3s; }
+.admin-sidebar-header { padding: var(--space-5); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.admin-sidebar-header h2 { font-size: var(--text-lg); font-weight: 700; color: white; }
+
+.admin-nav { flex: 1; padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); }
+.admin-nav-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); font-size: var(--text-sm); border-radius: var(--radius-sm); color: #a0a0a0; transition: all 0.15s; }
+.admin-nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
+.admin-nav-item.active { background: rgba(255,255,255,0.1); color: white; font-weight: 600; }
+
+.admin-sidebar-footer { padding: var(--space-4); border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+.admin-user-info { font-size: var(--text-sm); }
+.admin-logout-btn { display: flex; align-items: center; gap: var(--space-1); font-size: var(--text-xs); color: #a0a0a0; }
+.admin-logout-btn:hover { color: var(--color-danger); }
+
+.admin-main { flex: 1; margin-left: var(--sidebar-width); display: flex; flex-direction: column; min-height: 100vh; }
+.admin-topbar { height: 56px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; padding: 0 var(--space-4); gap: var(--space-3); position: sticky; top: 0; z-index: 40; }
+.admin-menu-toggle { display: none; }
+.admin-breadcrumb { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+.admin-content { flex: 1; padding: var(--space-6); }
+
+/* Mobile table scroll */
+.admin-content table { min-width: 600px; }
+.admin-content > div > div { overflow-x: auto; }
+
+@media (max-width: 768px) {
+  .admin-sidebar { transform: translateX(-100%); }
+  .admin-sidebar.open { transform: translateX(0); }
+  .admin-main { margin-left: 0; }
+  .admin-menu-toggle { display: flex; }
+  .admin-content { padding: var(--space-4); }
+}

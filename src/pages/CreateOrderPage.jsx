@@ -1,0 +1,107 @@
+﻿import { useContext, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { MapPin, ChevronRight } from "lucide-react";
+import { ServiceContext } from "../contexts/ServiceContext";
+import { useCart } from "../contexts/CartContext";
+import { useAuth } from "../contexts/AuthContext";
+import { useToast } from "../components/Toast";
+import { formatPrice } from "../utils/format";
+import "./CreateOrderPage.css";
+
+export default function CreateOrderPage() {
+  const { goodId } = useParams();
+  const services = useContext(ServiceContext);
+  const { selectedItems, clearSelected } = useCart();
+  const { user, updateUser } = useAuth();
+  const toast = useToast();
+  const navigate = useNavigate();
+
+  const [address, setAddress] = useState(user?.address || "");
+  const [orderItems, setOrderItems] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    let items;
+    if (goodId) {
+      const good = services.good.getGoodById(parseInt(goodId, 10));
+      if (!good) { navigate("/"); return; }
+      items = [{ goodId: good.id, count: 1, price: good.price }];
+    } else {
+      const stored = localStorage.getItem("checkoutItems");
+      if (!stored) { navigate("/cart"); return; }
+      const parsed = JSON.parse(stored);
+      items = parsed.map(i => {
+        const g = services.good.getGoodById(i.goodId);
+        return { goodId: i.goodId, count: i.count, price: g?.price || 0 };
+      });
+    }
+    setOrderItems(items);
+    setTotal(items.reduce((s, i) => s + i.price * i.count, 0));
+  }, [goodId, services, navigate]);
+
+  const handleSubmit = () => {
+    if (!address.trim()) { toast("请填写收货地址", "warning"); return; }
+
+    for (const item of orderItems) {
+      const good = services.good.getGoodById(item.goodId);
+      if (good && good.stock != null && item.count > good.stock) {
+        toast(`「${good.name}」库存不足，仅剩 ${good.stock} 件`, "warning");
+        return;
+      }
+    }
+
+    updateUser({ address: address.trim() });
+    const order = services.order.createOrder(user.id, orderItems, total, address.trim());
+    if (!goodId) {
+      clearSelected();
+      localStorage.removeItem("checkoutItems");
+    }
+    navigate(`/pay/${order.id}`);
+  };
+
+  return (
+    <div className="create-order-page container">
+      <h1 className="co-title">确认订单</h1>
+      <div className="co-address">
+        <div className="co-address-header">
+          <MapPin size={18} />
+          <h3>收货地址</h3>
+        </div>
+        <input
+          className="co-address-input"
+          type="text"
+          placeholder="请输入收货地址"
+          value={address}
+          onChange={e => setAddress(e.target.value)}
+        />
+      </div>
+      <div className="co-items">
+        <h3>商品清单</h3>
+        {orderItems.map((item, idx) => {
+          const good = services.good.getGoodById(item.goodId);
+          return (
+            <div key={idx} className="co-item">
+              <div className="co-item-img">
+                <img src={good?.img} alt={good?.name} />
+              </div>
+              <div className="co-item-info">
+                <span className="co-item-name">{good?.name}</span>
+                <span className="co-item-meta">×{item.count}</span>
+              </div>
+              <span className="co-item-price">{formatPrice(item.price * item.count)}</span>
+            </div>
+          );
+        })}
+      </div>
+      <div className="co-footer">
+        <div className="co-total">
+          <span>合计</span>
+          <span className="co-total-price">{formatPrice(total)}</span>
+        </div>
+        <button className="co-submit" onClick={handleSubmit}>
+          提交订单 <ChevronRight size={18} />
+        </button>
+      </div>
+    </div>
+  );
+}

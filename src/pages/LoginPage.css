@@ -1,0 +1,32 @@
+﻿.login-page { min-height: calc(100vh - var(--header-height)); display: flex; align-items: center; justify-content: center; padding: var(--space-4); }
+
+.login-card { width: 100%; max-width: 400px; background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-8); }
+
+.login-header { text-align: center; margin-bottom: var(--space-6); }
+.login-header svg { color: var(--color-accent); margin-bottom: var(--space-2); }
+.login-header h1 { font-size: var(--text-xl); font-weight: 700; }
+.login-header p { color: var(--color-text-muted); font-size: var(--text-sm); margin-top: var(--space-1); }
+
+.login-form { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.login-error-banner { padding: var(--space-2) var(--space-3); background: #fef2f2; color: var(--color-danger); border-radius: var(--radius-sm); font-size: var(--text-sm); }
+
+.login-field { display: flex; flex-direction: column; gap: var(--space-1); }
+.login-field label { font-size: var(--text-sm); font-weight: 500; color: var(--color-text-secondary); }
+.login-field input { padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: var(--text-sm); outline: none; transition: border-color 0.15s; }
+.login-field input:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-light); }
+.login-field input.error { border-color: var(--color-danger); }
+
+.password-wrapper { position: relative; }
+.password-wrapper input { width: 100%; padding-right: 40px; }
+.toggle-pwd { position: absolute; right: var(--space-2); top: 50%; transform: translateY(-50%); color: var(--color-text-muted); padding: var(--space-1); }
+.toggle-pwd:hover { color: var(--color-text); }
+
+.field-error { font-size: var(--text-xs); color: var(--color-danger); }
+
+.login-submit { display: flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-3); background: var(--color-accent); color: white; font-weight: 600; border-radius: var(--radius-md); margin-top: var(--space-2); transition: background 0.15s; }
+.login-submit:hover { background: var(--color-accent-hover); }
+
+.login-switch { text-align: center; font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-4); }
+.login-switch button { color: var(--color-accent); font-weight: 600; }
+.login-switch button:hover { text-decoration: underline; }
