@@ -11,6 +11,23 @@ class CategoryService {
     return this.list;
   }
 
+  /** 商城前台扁平分类（含 icon），兼容同学版 UI */
+  getAll() {
+    const icons = {
+      '1': '👔',
+      '2': '📱',
+      '3': '🏠',
+      '4': '🛋️',
+      '5': '🚗',
+      '6': '💻',
+    };
+    return this.list.map((c) => ({
+      id: c.id,
+      name: c.name,
+      icon: c.icon || icons[c.id] || '📦',
+    }));
+  }
+
   getById(id) {
     return this.list.find((c) => c.id === id);
   }

@@ -1,6 +1,6 @@
 import { defaultCategories } from '../mock/categories';
 
-const GOODS_VERSION = '3';
+const GOODS_VERSION = '5';
 const DEMO_USER = {
   username: 'member',
   password: '123456',
@@ -21,5 +21,10 @@ export function initAppData() {
 
   if (!localStorage.getItem('categoryList')) {
     localStorage.setItem('categoryList', JSON.stringify(defaultCategories));
+  }
+
+  if (!localStorage.getItem('cartList') && localStorage.getItem('cartItems')) {
+    localStorage.setItem('cartList', localStorage.getItem('cartItems'));
+    localStorage.removeItem('cartItems');
   }
 }
