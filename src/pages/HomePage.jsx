@@ -37,19 +37,6 @@ export default function HomePage() {
       <section className="home-section container">
         <div className="section-header">
           <div className="section-header-left">
-            <Flame size={20} />
-            <h2>热门推荐</h2>
-          </div>
-          <Link to="/category" className="section-header-right">
-            查看全部 <ChevronRight size={16} />
-          </Link>
-        </div>
-        <ProductGrid goods={hotGoods} />
-      </section>
-
-      <section className="home-section container">
-        <div className="section-header">
-          <div className="section-header-left">
             <TrendingUp size={20} />
             <h2>全部分类</h2>
           </div>
@@ -62,6 +49,19 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      <section className="home-section container">
+        <div className="section-header">
+          <div className="section-header-left">
+            <Flame size={20} />
+            <h2>热门推荐</h2>
+          </div>
+          <Link to="/category" className="section-header-right">
+            查看全部 <ChevronRight size={16} />
+          </Link>
+        </div>
+        <ProductGrid goods={hotGoods} />
       </section>
     </div>
   );

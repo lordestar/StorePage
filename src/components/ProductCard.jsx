@@ -15,7 +15,7 @@ const ProductCard = memo(function ProductCard({ good }) {
   const services = useContext(ServiceContext);
   const navigate = useNavigate();
 
-  const category = services.category?.getById(good.categoryId);
+  const category = services.category?.getDisplayInfo(good.categoryId);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const ProductCard = memo(function ProductCard({ good }) {
       <div className="product-card-img">
         <GoodImage good={good} />
         {discount > 0 && <span className="product-card-badge">-{discount}%</span>}
-        {category && <span className="product-card-cat">{category.icon} {category.name}</span>}
+        {category && <span className="product-card-cat">{category.icon} {category.label}</span>}
       </div>
       <div className="product-card-body">
         <h3 className="product-card-name">{good.name}</h3>

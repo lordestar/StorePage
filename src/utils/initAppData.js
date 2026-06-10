@@ -1,6 +1,7 @@
 import { defaultCategories } from '../mock/categories';
 
-const GOODS_VERSION = '6';
+export const GOODS_VERSION = '7';
+
 const DEMO_USER = {
   username: 'member',
   password: '123456',

@@ -28,7 +28,7 @@ export default function DetailPage() {
     if (good) {
       setMainImg(getGoodImage(good) || "");
       const related = services.good.getGoodList()
-        .filter((g) => g.categoryId === good.categoryId && g.id !== good.id && isGoodOnSale(g))
+        .filter((g) => services.category.getParentId(g.categoryId) === services.category.getParentId(good.categoryId) && g.id !== good.id && isGoodOnSale(g))
         .slice(0, 4);
       setRelatedGoods(related);
     }
